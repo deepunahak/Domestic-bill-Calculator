@@ -18,19 +18,22 @@ class Calculator(object):
 
         bills = Bill(house_sq_ft, water_liter, electricity_kwh, phone_seconds, gas_liter)
 
+        
+        
         # House Bill
         one_sq_ft = 10
-        if bills.house_sq_ft == None or bills.house_sq_ft == 0:
+        
+        if bills.house_sq_ft == None or bills.house_sq_ft <= 0:
             print("There is no bill for house, need to mention square feet detail.")
         else:
             house_bill = house_sq_ft * one_sq_ft
             self.datbase["house"] = house_bill
             if house_bill != None:
                 self.datbase['total'] += house_bill
-
+            
         # Water Bill
         one_liter_price = 0.001
-        if bills.water_liter == None or bills.water_liter == 0:
+        if bills.water_liter == None or bills.water_liter <= 0:
             print("There is no bill for water, need to mention water in liters.")
         else:
             water_bill = one_liter_price * water_liter
@@ -41,7 +44,7 @@ class Calculator(object):
         # Electricity Bill
         per_unit_electric = 5
         gst_for_elec_bill = 0.18
-        if bills.electricity_kwh == None or bills.electricity_kwh == 0:
+        if bills.electricity_kwh == None or bills.electricity_kwh <= 0:
             print("There is no bill for electricity, need to mention kilowatt hour(kwh) detail.")
         else:
             total_electricity = bills.electricity_kwh * per_unit_electric
@@ -57,7 +60,7 @@ class Calculator(object):
         per_minute_paisa = 60 * per_second_paisa
         tax_cess = 0.05
         fixed_charge = 100
-        if bills.phone_seconds == None or bills.phone_seconds == 0:
+        if bills.phone_seconds == None or bills.phone_seconds <= 0:
             print("Phone bill fixed charge with tax", (fixed_charge * tax_cess) + fixed_charge,
                   " INR,need to mention call duration in Seconds")
 
@@ -76,7 +79,7 @@ class Calculator(object):
 
         # Gas Bill
         per_liter_gas = 15
-        if bills.gas_liter == None or bills.gas_liter == 0:
+        if bills.gas_liter == None or bills.gas_liter <= 0:
             print("There is no bill for gas, need to enter gas in liters")
         else:
             gas_bill = bills.gas_liter * per_liter_gas
