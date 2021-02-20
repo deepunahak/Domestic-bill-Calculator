@@ -1,10 +1,18 @@
 from model import Bill
-import sys
 
 
 class Calculator(object):
+
+    # Dictionary to store runtime values
     datbase = {}
+
     datbase['total'] = 0
+    datbase["house"] = 0
+    datbase["water"] = 0
+    datbase["electricity"] = 0
+    datbase["phone"] = 0
+    datbase['gas'] = 0
+
     # Calculator
     def calc_monthly_bill(self, house_sq_ft, water_liter, electricity_kwh, phone_seconds, gas_liter):
 
@@ -51,7 +59,8 @@ class Calculator(object):
         fixed_charge = 100
         if bills.phone_seconds == None or bills.phone_seconds == 0:
             print("Phone bill fixed charge with tax", (fixed_charge * tax_cess) + fixed_charge,
-                  "\n.Need to mention call duration in Seconds")
+                  " INR,need to mention call duration in Seconds")
+
             self.datbase["phone"] = (fixed_charge * tax_cess) + fixed_charge
             self.datbase['total'] += (fixed_charge * tax_cess) + fixed_charge
         else:
@@ -77,15 +86,14 @@ class Calculator(object):
                 self.datbase['total'] += gas_bill
 
     def print_bill(self):
-
+        print("-*-"*30)
         print("Total Spending for this month: INR ", self.datbase['total'])
         print("House: INR ", self.datbase["house"])
         print("Water: INR ", self.datbase["water"])
         print("Electricity: INR ", self.datbase["electricity"])
         print("Phone: INR ", self.datbase["phone"])
         print("Gas: INR ", self.datbase["gas"])
-
-
+        print("-*-" * 30)
 
     # Application Exit
     def app_exit(self, ch):
@@ -97,3 +105,4 @@ class Calculator(object):
                 break
             else:
                 print("Invalid input..!!")
+
